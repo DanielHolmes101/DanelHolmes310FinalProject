@@ -22,7 +22,6 @@ def extract_search_term(subject):
   # parse html for wikipedia link
   html = requests.get("https://www.google.com/search", headers=headers, params=params)
   soup = BeautifulSoup(html.text, 'lxml')
-  print(soup)
   for result in soup.select('.tF2Cxc')[:15]:
     
     title = result.select_one('.DKV0Md').text

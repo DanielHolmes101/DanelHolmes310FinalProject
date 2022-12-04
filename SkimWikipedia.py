@@ -6,10 +6,11 @@ from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 from spacy import displacy
 from spacy.matcher import Matcher
+import wikipediaapi
 
 #Skim info from wikipedia. must populate definitions before anything. 
 
-
+wiki_wiki = wikipediaapi.Wikipedia('en')
 
 
 
@@ -19,8 +20,16 @@ nlp = spacy.load('en_core_web_sm')
 definitions = []
 
 
+# Page - Exists: False
+
 def Create_Definition_list(link):     # call me first
     print(link)
+    page_py = wiki_wiki.page('Python_(programming_language)')
+    print("Page - Exists: %s" % page_py.exists())
+    # Page - Exists: True
+
+    page_missing = wiki_wiki.page('NonExistingPageWithStrangeName')
+    print("Page - Exists: %s" %     page_missing.exists())
     url=urllib.request.urlopen(link)
     soup=bs.BeautifulSoup(url, "html.parser") #changed!
     for paragraph in soup.find_all('p'):
