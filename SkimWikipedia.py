@@ -7,7 +7,8 @@ from textblob import TextBlob
 from spacy import displacy
 from spacy.matcher import Matcher
 import wikipediaapi
-
+from urllib.parse import urlparse, parse_qs, urlsplit, parse_qs
+import re
 #Skim info from wikipedia. must populate definitions before anything. 
 
 wiki_wiki = wikipediaapi.Wikipedia('en')
@@ -17,25 +18,22 @@ wiki_wiki = wikipediaapi.Wikipedia('en')
 nlp = spacy.load('en_core_web_sm')
 
 
-definitions = []
+global definitions 
 
 
 # Page - Exists: False
 
 def Create_Definition_list(link):     # call me first
     print(link)
-    page_py = wiki_wiki.page('Python_(programming_language)')
+    split_link = urlsplit(link)
+    print(split_link)
+    subject = split_link.path.split("/wiki/",1)[1]
+    page_py = wiki_wiki.page(subject)
     print("Page - Exists: %s" % page_py.exists())
-    # Page - Exists: True
-
-    page_missing = wiki_wiki.page('NonExistingPageWithStrangeName')
-    print("Page - Exists: %s" %     page_missing.exists())
-    url=urllib.request.urlopen(link)
-    soup=bs.BeautifulSoup(url, "html.parser") #changed!
-    for paragraph in soup.find_all('p'):
-        definitions.append(str(paragraph.text))
-    
-    return definitions
+    global definitions
+    definitions = page_py.summary[0:400]
+    definition = definitions
+    return definition
 
 
 
@@ -58,6 +56,7 @@ def Get_Wiki_infofails():
     return nsubj,aux,dobj
 
 def Get_Wiki_nsubj():        # finds proper nouns, not strictly nsubj 
+    print(definitions, 'asda                                                          asd      asd ')
     def_doc = nlp(str(definitions))
     nsubj = [] 
     for token in def_doc:

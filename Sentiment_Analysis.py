@@ -21,7 +21,6 @@ def getWikiResponse(search):
     dobj = []
     root = []
     noun = []
-    definition = []
     SkimWikipedia.Create_Definition_list(search_tester.extract_search_term(Find_Subject.find_Subject(search)))
     nsubj = SkimWikipedia.Get_Wiki_nsubj()
     aux = SkimWikipedia.Get_Wiki_aux()

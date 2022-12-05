@@ -10,6 +10,7 @@ from textblob import TextBlob
 
 nlp = spacy.load('en_core_web_sm')
 nlp.add_pipe('spacytextblob')
+
 def find_Subject(inputs):
     
     the_doc = nlp(inputs)
@@ -27,6 +28,8 @@ def find_Subject(inputs):
             if token.tag_ == 'NNP':
                 print(token.text + '     :noun')
                 return token.text
+    
+
 
 def find_Sentiment(inputs):
     
