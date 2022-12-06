@@ -2,13 +2,17 @@
 
 ## Daniels Additions
 
-I noticed that the current method of getting unknown information was extremely slow. We searched on google for the term, went through each link until we found a wikipedia link, scrapped the HTML of that link and got the entire wikipedia article, then attempted to summarize a sentence based on that large wikipedia page. 
+I noticed that the current method of getting unknown information was extremely slow. We searched on google for the term, went through each link until we found a wikipedia link, scrapped the HTML of that link and got the entire wikipedia article, then attempted to summarize a sentence based on that large wikipedia page.I changed the code so instead it just uses wikipedia's API to see if the subject is on wikipedia, then gets a summary from the api.  you can see the bot is more accurate, and now is over 1000x quicker
 
-I changed the code so instead it just uses wikipedia's API to see if the subject is on wikipedia, then gets a summary from the api. 
+![image](https://user-images.githubusercontent.com/65092654/205804787-8b5d8b73-3b08-4f78-97a3-deb668db956c.png)
+
+
+
 
 My second API call is to google translate, where I detect the incoming language, turn it into english for processing, the turn the outputted language into what the user initially respond with. 
 
 
+![image](https://user-images.githubusercontent.com/65092654/205805601-9863caf5-dc39-411d-bdd7-07a34ba8c5af.png)
 
 
 
