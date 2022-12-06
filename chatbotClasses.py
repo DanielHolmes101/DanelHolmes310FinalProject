@@ -5,9 +5,10 @@ from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 import Sentiment_Analysis
 from googletrans import Translator
-
+import app 
 
 #class to deal with reading, validating, and processing user input before analysis
+global initialLanguage # the initial language inputted
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
     USERNAME = "dyno_sender6354"
@@ -38,27 +39,17 @@ class ReadInput:
   #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
     def process(userInput):
-        translator  = Translator()
-      #  wordList_corrected = TextBlob(userInput)
-       # testwordcorrect = wordList_corrected.correct()
-        #translator = google_translator()  
-
-        translate_text = translator.translate(userInput)  
-        print(translate_text)  
-        # testwordcorrect = userInput
-        # untranslated = str(testwordcorrect)
-        # testword = untranslated
-        test = translator.detect(userInput)
-        print(test)
-        # if translator.detect(untranslated).lang != 'en':
-        #     testword = translator.translate(untranslated)
-        # print(translator.translate(untranslated))
         testword = userInput
+        if app.detect_language(userInput) != 'en':
+            global initialLanguage 
+            initialLanguage = app.detect_language(userInput)
+            testword = app.translate_text(userInput)
+    
         wordList = re.split(r'\s+|[,;?!.-]\s*',str(testword))
        
        
         #print(wordList)
-        response = InputAnalysis.checkAllResponses(wordList,userInput) #see comments in other class
+        response = InputAnalysis.checkAllResponses(wordList,testword) #see comments in other class
         return response
         
 
