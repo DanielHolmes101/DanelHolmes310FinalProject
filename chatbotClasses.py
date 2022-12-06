@@ -4,6 +4,9 @@ import spacy
 from spacytextblob.spacytextblob import SpacyTextBlob
 from textblob import TextBlob
 import Sentiment_Analysis
+from googletrans import Translator
+
+
 #class to deal with reading, validating, and processing user input before analysis
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
@@ -27,6 +30,7 @@ class ReadInput:
         # if userInput.lower() == "end session":
         #     return "END_SESSION"
         if ReadInput.validate(userInput):
+
             return (ReadInput.USERNAME + ": " + ReadInput.process(userInput))
         else:
             return (ReadInput.USERNAME+ ": " + Response.getResponse(Response.SWEAR))
@@ -34,9 +38,22 @@ class ReadInput:
   #process the user input by splitting it into individual words and removing special characters and correcting spelling, then pass it on for analysis
     @staticmethod
     def process(userInput):
-        wordList_corrected = TextBlob(userInput)
-        testword = wordList_corrected.correct()
-       # print(testword)
+        translator  = Translator()
+      #  wordList_corrected = TextBlob(userInput)
+       # testwordcorrect = wordList_corrected.correct()
+        #translator = google_translator()  
+
+        translate_text = translator.translate(userInput)  
+        print(translate_text)  
+        # testwordcorrect = userInput
+        # untranslated = str(testwordcorrect)
+        # testword = untranslated
+        test = translator.detect(userInput)
+        print(test)
+        # if translator.detect(untranslated).lang != 'en':
+        #     testword = translator.translate(untranslated)
+        # print(translator.translate(untranslated))
+        testword = userInput
         wordList = re.split(r'\s+|[,;?!.-]\s*',str(testword))
        
        
