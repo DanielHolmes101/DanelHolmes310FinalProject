@@ -21,7 +21,9 @@ My second API call is to google cloud translate, where I detect the incoming lan
 
 ![image](https://user-images.githubusercontent.com/65092654/205805601-9863caf5-dc39-411d-bdd7-07a34ba8c5af.png)
 
+#Added Classes
 
+I added app, to handle api calls and authentication, and modified sentiment analysis and skimwikipedia. I removed any dependency on search tester, but kept it for future use. 
 
 ## Concept behind chatbot
 
