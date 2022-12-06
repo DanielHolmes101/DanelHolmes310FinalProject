@@ -8,7 +8,8 @@ from googletrans import Translator
 import app 
 
 #class to deal with reading, validating, and processing user input before analysis
-global initialLanguage # the initial language inputted
+global initialLanguage  # the initial language inputted
+initialLanguage = 'en' # default to english
 class ReadInput:
     #Constants for bots username on chat forum and cursewords that the bot does not appreciate
     USERNAME = "dyno_sender6354"
@@ -43,7 +44,8 @@ class ReadInput:
         if app.detect_language(userInput) != 'en':
             global initialLanguage 
             initialLanguage = app.detect_language(userInput)
-            testword = app.translate_text(userInput)
+            print(initialLanguage)
+            testword = app.translate_text('en',userInput)
     
         wordList = re.split(r'\s+|[,;?!.-]\s*',str(testword))
        
@@ -189,4 +191,6 @@ class InputAnalysis:
             else:
                 return Response.getResponse(Response.UNRECOGNIZED)
         else:
-            return bestMatch
+            print(bestMatch,  '                   asdfas                   asdf dsa ')
+            print(initialLanguage)
+            return app.translate_text(initialLanguage,bestMatch)

@@ -29,11 +29,13 @@ def Create_Definition_list(link):     # call me first
     print(split_link)
     subject = split_link.path.split("/wiki/",1)[1]
     page_py = wiki_wiki.page(subject)
-    print("Page - Exists: %s" % page_py.exists())
-    global definitions
-    definitions = page_py.summary[0:400]
-    definition = definitions
-    return definition
+    if page_py.exists():
+      global definitions
+      definitions = page_py.summary[0:400]
+      definition = definitions
+      return definition
+    else:
+        return False 
 
 
 
