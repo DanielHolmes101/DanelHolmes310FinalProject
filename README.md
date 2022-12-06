@@ -1,5 +1,17 @@
 # ScammerBot
 
+## Daniels Additions
+
+I noticed that the current method of getting unknown information was extremely slow. We searched on google for the term, went through each link until we found a wikipedia link, scrapped the HTML of that link and got the entire wikipedia article, then attempted to summarize a sentence based on that large wikipedia page. 
+
+I changed the code so instead it just uses wikipedia's API to see if the subject is on wikipedia, then gets a summary from the api. 
+
+My second API call is to google translate, where I detect the incoming language, turn it into english for processing, the turn the outputted language into what the user initially respond with. 
+
+
+
+
+
 ## Concept behind chatbot
 
 For our implementation, the chatbot is masquearading as a human chatter on a rock climbing chat site. The bot will spit out canned responses when certain questions are asked, and if the user ever expresses agreement or that they share the same interest (e.g. in rock climbing style, favourite rock climber, shoes, etc.), the bot will respond by presenting the user with a link "related" to that interest (e.g. user says "i like that too!" then bot says "Really!? Then you have to check this out: [malicious link](https://google.com).)
